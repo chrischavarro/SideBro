@@ -3,8 +3,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 import './App.css';
+import { connect } from 'react-redux';
+import * as actions from './actions';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, actions)(App);
