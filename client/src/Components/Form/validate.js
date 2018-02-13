@@ -9,8 +9,8 @@ const validate = values => {
   if (!values.bio) {
     errors.bio = 'Required'
   }
-  if (!values.bioName) {
-    errors.lastName = 'Required'
+  if (!values.city) {
+    errors.city = 'Required'
   }
   if (!values.email) {
     errors.email = 'Required'

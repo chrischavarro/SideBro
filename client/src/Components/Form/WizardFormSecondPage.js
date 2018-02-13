@@ -12,22 +12,26 @@ const WizardFormSecondPage = props => {
     <div className="row">
       <div className="wizardDiv card-1 col s10 offset-s1">
         <form onSubmit={handleSubmit}>
-          <div className="col s12">
+          <div className="col s6 offset-s3">
             <Field
-            name="summary"
+            name="city"
             type="text"
             component={renderField}
-            label="Give a short summary about yourself in 150 characters or less"
+            label="What city do you live in?"
             />
           </div>
           <div className="wizardButtonRow row">
-            <div className="col s1 offset-s11">
-            <button type="button" className="previous wizardButton" onClick={previousPage}>
-              Previous
-            </button>
-            <button type="submit" className="wizardButton next">
-              Next
-            </button>
+            <div className="col s12">
+              <div className="col 2" style={{ padding: '0px' }}>
+                <button type="button" className="previous wizardButton" onClick={previousPage}>
+                  Previous
+                </button>
+              </div>
+              <div className="col s2 offset-s8">
+                <button type="submit" className="wizardButton next">
+                  Next
+                </button>
+              </div>
             </div>
           </div>
         </form>
