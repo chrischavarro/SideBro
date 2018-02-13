@@ -6,7 +6,6 @@ tagController.get('/api/tags', (req, res) => {
   Tag.find()
     .exec((err, tags) => {
       res.send(tags)
-      console.log('TAGS', tags)
     });
 });
 

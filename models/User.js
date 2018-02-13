@@ -7,6 +7,7 @@ const userSchema = new Schema({
   bio: String,
   summary: String,
   artists: String,
+  location: String,
   tags: { type: Schema.Types.ObjectId, ref: 'Tag' },
   requests: [{ type: Schema.Types.ObjectId, ref: 'Request' }],
   chats: [{ type: Schema.Types.ObjectId, ref: 'Chat' }],

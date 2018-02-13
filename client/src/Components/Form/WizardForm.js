@@ -28,12 +28,26 @@ class WizardForm extends Component {
   }
 
   render() {
-    console.log(this.props.tags)
+    console.log(this.state.page)
     const { onSubmit } = this.props
     const { page } = this.state
     if (this.props.tags) {
       return (
-        <div>
+        <div className="row">
+        <div className="wizardHeader card-1 col s10 offset-s1">
+          <div className="col s4 wizardHeaderStep">
+            <div className={`stepCircle step1${page}`}>1</div>
+            {"Set up your profile"}
+          </div>
+          <div className="col s4 wizardHeaderStep">
+            <div className={`stepCircle step2${page}`}>2</div>
+            {"Pick your preferences"}
+          </div>
+          <div className="col s4 wizardHeaderStep">
+            <div className={`stepCircle step2${page}`}>3</div>
+            {"Connect your Spotify"}
+          </div>
+        </div>
         {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} tags={this.props.tags} />}
         {page === 2 && (
           <WizardFormSecondPage

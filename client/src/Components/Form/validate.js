@@ -6,8 +6,8 @@ const validate = values => {
   if (values.summary && values.summary.length > 150) {
     errors.summary = "Can't be longer than 150 characters!"
   }
-  if (!values.lastName) {
-    errors.lastName = 'Required'
+  if (!values.bio) {
+    errors.bio = 'Required'
   }
   if (!values.bioName) {
     errors.lastName = 'Required'
