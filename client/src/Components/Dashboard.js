@@ -9,7 +9,7 @@ class Dashboard extends Component {
     if (this.props.auth) {
       return (
           <div>
-            <WizardForm onSubmit={(values) => console.log('submitted')} />
+            <WizardForm onSubmit={(values) => console.log('submitted', values)} />
           </div>
       )
     }

@@ -44,9 +44,9 @@ class WizardFormFirstPage extends Component {
             </div>
             <div className="wizardButtonRow row">
               <div className="col s1 offset-s11">
-              <button type="submit" className="wizardButton next">
-              Next
-              </button>
+                <button type="submit" className="wizardButton next">
+                  Next
+                </button>
               </div>
             </div>
           </form>

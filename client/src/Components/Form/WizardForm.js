@@ -28,7 +28,6 @@ class WizardForm extends Component {
   }
 
   render() {
-    console.log(this.state.page)
     const { onSubmit } = this.props
     const { page } = this.state
     if (this.props.tags) {
@@ -44,7 +43,7 @@ class WizardForm extends Component {
             {"Pick your preferences"}
           </div>
           <div className="col s4 wizardHeaderStep">
-            <div className={`stepCircle step2${page}`}>3</div>
+            <div className={`stepCircle step3${page}`}>3</div>
             {"Connect your Spotify"}
           </div>
         </div>
@@ -52,13 +51,11 @@ class WizardForm extends Component {
         {page === 2 && (
           <WizardFormSecondPage
           previousPage={this.previousPage}
-          onSubmit={this.nextPage}
+          onSubmit={onSubmit}
           />
         )}
         {page === 3 && (
           <WizardFormThirdPage
-          previousPage={this.previousPage}
-          onSubmit={onSubmit}
           />
         )}
         </div>
