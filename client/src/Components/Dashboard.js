@@ -5,11 +5,15 @@ import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
 
 class Dashboard extends Component {
+  handleSubmit(values) {
+    this.props.createProfile(values)
+  }
+
   renderDashboard() {
     if (this.props.auth) {
       return (
           <div>
-            <WizardForm onSubmit={(values) => console.log('submitted', values)} />
+            <WizardForm onSubmit={(values) => this.handleSubmit(values)} />
           </div>
       )
     }

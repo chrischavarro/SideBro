@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Router, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 import './App.css';
 import { connect } from 'react-redux';
 import * as actions from './actions';
+import history from './history';
 
 class App extends Component {
   componentDidMount() {
@@ -14,12 +15,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
+        <Router history={history}>
           <div>
             <Route exact path="/" component={Home}/>
             <Route exact path="/dashboard" component={Dashboard}/>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     );
   }

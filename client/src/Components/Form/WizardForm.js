@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import WizardHeader from './WizardHeader';
 import WizardFormFirstPage from './WizardFormFirstPage';
 import WizardFormSecondPage from './WizardFormSecondPage';
 import WizardFormThirdPage from './WizardFormThirdPage';
+
 
 class WizardForm extends Component {
   componentDidMount() {
@@ -33,31 +35,21 @@ class WizardForm extends Component {
     if (this.props.tags) {
       return (
         <div className="row">
-        <div className="wizardHeader card-1 col s10 offset-s1">
-          <div className="col s4 wizardHeaderStep">
-            <div className={`stepCircle step1${page}`}>1</div>
-            {"Set up your profile"}
-          </div>
-          <div className="col s4 wizardHeaderStep">
-            <div className={`stepCircle step2${page}`}>2</div>
-            {"Pick your preferences"}
-          </div>
-          <div className="col s4 wizardHeaderStep">
-            <div className={`stepCircle step3${page}`}>3</div>
-            {"Connect your Spotify"}
-          </div>
-        </div>
-        {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} tags={this.props.tags} />}
-        {page === 2 && (
-          <WizardFormSecondPage
-          previousPage={this.previousPage}
-          onSubmit={onSubmit}
-          />
-        )}
-        {page === 3 && (
-          <WizardFormThirdPage
-          />
-        )}
+          <WizardHeader page={page} />
+          {page === 1 &&
+            <WizardFormFirstPage
+            onSubmit={this.nextPage}
+            tags={this.props.tags} />}
+          {page === 2 && (
+            <WizardFormSecondPage
+            previousPage={this.previousPage}
+            onSubmit={onSubmit}
+            />
+          )}
+          {page === 3 && (
+            <WizardFormThirdPage
+            />
+          )}
         </div>
       )
     } else {

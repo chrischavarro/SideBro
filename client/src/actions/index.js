@@ -17,3 +17,7 @@ export const fetchTags = () => async dispatch => {
   const res = await axios.get('/api/tags');
   dispatch({ type: FETCH_TAGS, payload: res.data })
 }
+
+export const createProfile = (values) => async dispatch => {
+  console.log(values)
+}

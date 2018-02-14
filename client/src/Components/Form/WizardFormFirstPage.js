@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate'
 import renderField from './renderField';
+import history from '../../history';
 
 class WizardFormFirstPage extends Component {
   renderTags() {
@@ -9,9 +10,9 @@ class WizardFormFirstPage extends Component {
     return tags.map(tag => {
       return (
         <div key={tag.name} className="ck-button">
-
           <label>
-            <input type="checkbox" value="1" /><span>{tag.name}</span>
+            <Field name={`key-${tag._id}`} id={tag.name} component="input" type="checkbox" key={tag.name} />
+            <span>{tag.name}</span>
           </label>
         </div>
       )
@@ -20,6 +21,7 @@ class WizardFormFirstPage extends Component {
 
   render() {
     const { handleSubmit } = this.props
+    console.log(history)
     return (
       <div className="row">
         <div className="wizardDiv card-1 col s10 offset-s1">
