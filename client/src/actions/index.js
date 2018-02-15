@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_TAGS } from './types';
+import history from '../history';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -20,4 +21,5 @@ export const fetchTags = () => async dispatch => {
 
 export const createProfile = (values) => async dispatch => {
   console.log(values)
+  history.push('/spotify');
 }
