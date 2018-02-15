@@ -13,10 +13,18 @@ const spotifyApi = new Spotify({
 spotifyController.get('/login', (req, res) => {
   const { scopes, spotifyRedirectURI } = keys;
   res.redirect(`https://accounts.spotify.com/authorize?response_type=code&client_id=${keys.spotifyClientID}&scope=`+ encodeURIComponent(scopes) + `&redirect_uri=` + spotifyRedirectURI)
+});
 
-  // const state = randomstring.generate(16);
-  // res.cookie(STATE_KEY, state);
-  // res.redirect(spotifyApi.createAuthorizeURL(scopes, state));
+spotifyController.get('/callback', (req, res) => {
+  const { code } = req.query;
+  spotifyApi.authorizationCodeGrant(code).then(data => {
+    const { expires_in, access_token, refresh_token } = data.body;
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
+    res.redirect(`/setup/#/${access_token}/${refresh_token}`);
+  }).catch(err => {
+    res.redirect('/#/error?insvalid_token');
+  });
 });
 
 module.exports = spotifyController;
