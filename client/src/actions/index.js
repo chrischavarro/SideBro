@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_TAGS } from './types';
+import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO } from './types';
 import history from '../history';
-import Spotify from 'spotify-web-api-js';
-const spotifyApi = new Spotify();
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -28,10 +26,9 @@ export const createProfile = (values) => async dispatch => {
 
 export const fetchSpotifyInfo = (accessToken) => async dispatch => {
   const AuthStr = `Bearer ${accessToken}`
-  console.log('TOKEN', accessToken)
   axios.get('https://api.spotify.com/v1/me/top/artists', { headers: { Authorization: AuthStr}})
-  .then(response => {
-    console.log('Resposne', response);
+  .then(res => {
+    dispatch({ type: FETCH_SPOTIFY_INFO, payload: res.data.items})
   })
   .catch(error => {
     console.log('Error', error)

@@ -12,9 +12,9 @@ class Dashboard extends Component {
   renderDashboard() {
     if (this.props.auth) {
       return (
-          <div>
-            <WizardForm onSubmit={(values) => this.handleSubmit(values)} />
-          </div>
+        <div>
+          <WizardForm onSubmit={(values) => this.handleSubmit(values)} />
+        </div>
       )
     }
   }

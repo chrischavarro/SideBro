@@ -6,7 +6,7 @@ const userSchema = new Schema({
   name: String,
   bio: String,
   summary: String,
-  artists: String,
+  artists: [{ type: Schema.Types.ObjectId, ref: 'Artist' }],
   location: String,
   tags: { type: Schema.Types.ObjectId, ref: 'Tag' },
   requests: [{ type: Schema.Types.ObjectId, ref: 'Request' }],

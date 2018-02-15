@@ -9,13 +9,36 @@ class Setup extends Component {
     this.props.fetchSpotifyInfo(accessToken);
     // dispatch(setTokens({accessToken, refreshToken}));
   }
+
+  renderArtists() {
+    const { artists } = this.props;
+    if (artists) {
+      return artists.map(artist => {
+        return (
+          <div key={artist.id} className="col s3 artistDiv">
+            <img src={artist.images[0].url} style={{ width: '160px', height: '160px' }} className="artistImage"/>
+            <div>{artist.name}</div>
+          </div>
+        )
+      })
+    }
+  }
+
   render() {
     return (
       <div>
-        Setup Wizard
+        <div className="row">
+          <div className="col s10 offset-s1">
+            {this.renderArtists()}
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default connect(null, actions)(Setup);
+function mapStateToProps({ artists }) {
+  return { artists }
+};
+
+export default connect(mapStateToProps, actions)(Setup);
