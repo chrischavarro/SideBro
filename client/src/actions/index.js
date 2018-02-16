@@ -36,6 +36,5 @@ export const fetchSpotifyInfo = (accessToken) => async dispatch => {
 }
 
 export const submitArtists = (artists) => async dispatch => {
-  console.log('ARTISTS', artists)
   axios.post('/api/profile/artists', artists)
 }
