@@ -12,6 +12,7 @@ const authController = require('./routes/authController');
 const seedController = require('./routes/seedController');
 const tagController = require('./routes/tagController');
 const spotifyController = require('./routes/spotifyController');
+const profileController = require('./routes/profileController');
 
 require('./services/passport');
 const app = express();
@@ -36,6 +37,7 @@ app.use('/', authController);
 app.use('/', seedController);
 app.use('/', tagController);
 app.use('/spotify', spotifyController);
+app.use('/', profileController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
