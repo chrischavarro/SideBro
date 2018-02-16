@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as actions from '../actions'
 import { connect } from 'react-redux';
+import update from 'immutability-helper'
 
 class Setup extends Component {
   constructor(props) {
@@ -19,6 +20,11 @@ class Setup extends Component {
     const { artistArray } = this.state;
     if (artistArray.indexOf(artist.name) == -1) {
       this.setState({ artistArray: [...this.state.artistArray, artist.name]})
+    } else {
+      let index = artistArray.indexOf(artist.name)
+      this.setState((prevState) => ({
+        artistArray: update(artistArray, {$splice: [[index, 1]]})
+      }))
     }
   }
 
