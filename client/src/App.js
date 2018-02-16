@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Router, Route } from 'react-router-dom';
-import Home from './Components/Home';
-import Dashboard from './Components/Dashboard';
-import SpotifySetup from './Components/Form/SpotifySetup';
-import Setup from './Components/Setup';
+import { Router, Route } from 'react-router-dom';
 import './App.css';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import history from './history';
+
+import Home from './Components/Home';
+import Dashboard from './Components/Dashboard';
+import SpotifySetup from './Components/Form/SpotifySetup';
+import Setup from './Components/Setup';
+import Onboarding from './Components/Onboarding';
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +25,7 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard}/>
             <Route exact path="/spotify" component={SpotifySetup}/>
             <Route exact path="/setup/:accessToken/:refreshToken" component={Setup}/>
+            <Route exact path="/getting-started" component={Onboarding}/>
           </div>
         </Router>
       </div>

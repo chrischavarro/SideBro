@@ -18,7 +18,7 @@ class Setup extends Component {
 
   addArtist(artist) {
     const { artistArray } = this.state;
-    if (artistArray.map(a => { return a.name; }).indexOf(artist.name) == -1) {
+    if (artistArray.map(a => { return a.name; }).indexOf(artist.name) === -1) {
       console.log()
       this.setState({ artistArray: [...this.state.artistArray, { name: artist.name, image :artist.images[0].url} ]})
     } else {

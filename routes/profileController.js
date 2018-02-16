@@ -6,9 +6,8 @@ const User = require('../models/User');
 profileController.post('/api/profile/artists', (req, res) => {
   req.body.map(artist => {
     Artist.find({ name: artist.name})
-      .exec((err, artist) => {
-        // console.log('ARTIST', artist)
-        if (!artist) {
+      .exec((err, existingArtist) => {
+        if (existingArtist.length === 0) {
           // console.log('Artist not found')
           const newArtist = new Artist({
             name: artist.name,
@@ -20,11 +19,11 @@ profileController.post('/api/profile/artists', (req, res) => {
             user.save();
           })
           newArtist.save()
-        } else if (artist) {
+        } else {
           // console.log('Artist exists')
           User.findById(req.user._id)
           .exec((err, user) => {
-            user.artists.push(artist._id)
+            user.artists.push(existingArtist._id)
             user.save();
           })
         }
