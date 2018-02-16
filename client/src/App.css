@@ -294,18 +294,37 @@ body {
   background-color: #1ed760;
 }
 
+.artistContainer {
+  margin-top: 20px;
+  padding: 0px!important;
+}
+
+.artistHeader {
+  text-align: center;
+  font-size: 36px;
+  padding: 20px 0px;
+  background-color: #009688;
+  color: #fff;
+}
+
 .artistDiv {
   text-align: center;
   /* padding: 0px!important; */
-  padding: 0px 10px 5px 10px!important;
+  padding: 10px 15px 5px 15px!important;
   transition: all .3s;
   margin-bottom: 15px;
+  border-radius: 5px;
   /* margin: 0px 10px 20px 10px; */
 }
 
 .artistDiv:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)!important;
 }
+
+/* .artistDiv.true {
+  background-color: #e91e63;
+  color: #fff;
+} */
 
 .artistImage {
   display: block;
@@ -315,6 +334,13 @@ body {
 }
 
 .artistText {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
+}
+
+
+.artistDiv input:checked + div{
+    background-color:#e91e63;
+    border-radius:32px;
+    color:#fff;
 }

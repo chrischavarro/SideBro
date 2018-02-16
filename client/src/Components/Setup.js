@@ -7,7 +7,8 @@ class Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistArray: []
+      artistArray: [],
+      active: false
     }
   }
   componentDidMount() {
@@ -20,11 +21,15 @@ class Setup extends Component {
     const { artistArray } = this.state;
     if (artistArray.indexOf(artist.name) == -1) {
       this.setState({ artistArray: [...this.state.artistArray, artist.name]})
+      let currentState = this.state.active;
+      this.setState({ active: !currentState })
     } else {
       let index = artistArray.indexOf(artist.name)
       this.setState((prevState) => ({
         artistArray: update(artistArray, {$splice: [[index, 1]]})
       }))
+      let currentState = this.state.active;
+      this.setState({ active: !currentState })
     }
   }
 
@@ -33,9 +38,9 @@ class Setup extends Component {
     if (artists) {
       return artists.map(artist => {
         return (
-          <div key={artist.id} className="col s3 artistDiv" onClick={() => this.addArtist(artist)}>
-            <img src={artist.images[1].url} style={{ width: '100%', height: '100%' }} className="artistImage" alt={artist.name}/>
-            <input type="checkbox" name={artist.id} id={artist.id} key={artist.id} checked={false} onChange={() => console.log('CHANGE')} />
+          <div key={artist.id} className={`col s3 artistDiv ${this.state.active}`} onClick={() => this.addArtist(artist)}>
+            <img src={artist.images[1].url} style={{ width: '165px', height: '165px' }} className="artistImage" alt={artist.name}/>
+            <input type="checkbox" name={artist.id} id={artist.id} key={artist.id} defaultChecked={false} onChange={() => console.log('CHANGE')} />
             <div className="artistText">{artist.name}</div>
           </div>
         )
@@ -48,9 +53,11 @@ class Setup extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col s10 offset-s1">
+          <div className="col s8 offset-s2 artistContainer card-2">
+            <div className="artistHeader">
+            {"Pick Your Top 10 Artists"}
+            </div>
             {this.renderArtists()}
-            <button type="button">Select</button>
           </div>
         </div>
       </div>
