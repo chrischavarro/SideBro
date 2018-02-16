@@ -39,7 +39,7 @@ class Setup extends Component {
       return artists.map(artist => {
         return (
           <div key={artist.id} className={`col s3 artistDiv ${this.state.active}`} onClick={() => this.addArtist(artist)}>
-            <img src={artist.images[1].url} style={{ width: '165px', height: '165px' }} className="artistImage" alt={artist.name}/>
+            <img src={artist.images[1].url} style={{ width: '175px', height: '175px' }} className="artistImage" alt={artist.name}/>
             <input type="checkbox" name={artist.id} id={artist.id} key={artist.id} defaultChecked={false} onChange={() => console.log('CHANGE')} />
             <div className="artistText">{artist.name}</div>
           </div>
@@ -58,6 +58,9 @@ class Setup extends Component {
             {"Pick Your Top 10 Artists"}
             </div>
             {this.renderArtists()}
+            <button className="artistNext card-2">
+              {"Next"}
+            </button>
           </div>
         </div>
       </div>
