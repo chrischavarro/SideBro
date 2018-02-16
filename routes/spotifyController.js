@@ -21,7 +21,7 @@ spotifyController.get('/callback', (req, res) => {
     const { expires_in, access_token, refresh_token } = data.body;
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
-    res.redirect(`/setup/#/${access_token}/${refresh_token}`);
+    res.redirect(`/setup/${access_token}/${refresh_token}`);
   }).catch(err => {
     res.redirect('/#/error?insvalid_token');
   });
