@@ -7,8 +7,7 @@ class Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistArray: [],
-      active: false
+      artistArray: []
     }
   }
   componentDidMount() {
@@ -19,17 +18,14 @@ class Setup extends Component {
 
   addArtist(artist) {
     const { artistArray } = this.state;
-    if (artistArray.indexOf(artist.name) == -1) {
-      this.setState({ artistArray: [...this.state.artistArray, artist.name]})
-      let currentState = this.state.active;
-      this.setState({ active: !currentState })
+    if (artistArray.map(a => { return a.name; }).indexOf(artist.name) == -1) {
+      console.log()
+      this.setState({ artistArray: [...this.state.artistArray, { name: artist.name, image :artist.images[0].url} ]})
     } else {
       let index = artistArray.indexOf(artist.name)
       this.setState((prevState) => ({
         artistArray: update(artistArray, {$splice: [[index, 1]]})
       }))
-      let currentState = this.state.active;
-      this.setState({ active: !currentState })
     }
   }
 
@@ -40,7 +36,7 @@ class Setup extends Component {
         return (
           <label className="artistCheckbox"  key={artist.id}>
             <input type="checkbox"/>
-            <div key={artist.id} className={`col s3 artistDiv ${this.state.active}`} onClick={() => this.addArtist(artist)}>
+            <div key={artist.id} className={`col s3 artistDiv`} onClick={() => this.addArtist(artist)}>
               <img src={artist.images[1].url} style={{ width: '175px', height: '175px' }} className="artistImage" alt={artist.name}/>
               <div className="artistText">{artist.name}</div>
             </div>
@@ -60,7 +56,7 @@ class Setup extends Component {
             {"Pick Your Top 10 Artists"}
             </div>
             {this.renderArtists()}
-            <button className="artistNext card-2">
+            <button className="artistNext card-2" onClick={() => this.props.submitArtists(this.state.artistArray)}>
               {"Next"}
             </button>
           </div>

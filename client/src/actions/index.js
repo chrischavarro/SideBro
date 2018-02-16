@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO } from './types';
+import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, SUBMIT_ARTISTS } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -33,4 +33,8 @@ export const fetchSpotifyInfo = (accessToken) => async dispatch => {
   .catch(error => {
     console.log('Error', error)
   })
+}
+
+export const submitArtists = (artists) => async dispatch => {
+  console.log('ARTISTS', artists)
 }
