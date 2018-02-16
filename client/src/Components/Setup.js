@@ -39,9 +39,9 @@ class Setup extends Component {
       return artists.map(artist => {
         return (
           <label className="artistCheckbox"  key={artist.id}>
-            <div key={artist.id} htmlFor="r1" className={`col s3 artistDiv ${this.state.active}`} onClick={() => this.addArtist(artist)}>
+            <input type="checkbox"/>
+            <div key={artist.id} className={`col s3 artistDiv ${this.state.active}`} onClick={() => this.addArtist(artist)}>
               <img src={artist.images[1].url} style={{ width: '175px', height: '175px' }} className="artistImage" alt={artist.name}/>
-              <input type="checkbox" name="r1" id="r1" key={artist.id}/>
               <div className="artistText">{artist.name}</div>
             </div>
           </label>

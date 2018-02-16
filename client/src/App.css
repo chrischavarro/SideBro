@@ -294,17 +294,22 @@ body {
   background-color: #1ed760;
 }
 
+.artistCheckbox {
+  color: rgba(0, 0, 0, 0.87);;
+}
+
 .artistContainer {
   margin-top: 40px;
   padding: 0px!important;
 }
 
 .artistContainer input[type=checkbox] {
-  /* display: none!important; */
+  display: none!important;
 }
 
 .artistContainer input[type=checkbox]:checked + div {
-  background-color: red!important;
+  background-color: #52c7b8!important;
+  color: #fff;
 }
 
 .artistHeader {
