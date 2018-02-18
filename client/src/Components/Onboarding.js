@@ -26,7 +26,9 @@ class Onboarding extends Component {
             <div className="col s8 onboardingCardContainer">
               <UserCard
                 name="Christian Chavarro"
-                bio="I created this app and I'd like to think I'm a cool guy"
+                summary="I created this app and I'd like to think I'm a cool guy"
+                bio={`Hope you're enjoying SideBro so far. I'd love to hear
+                    any of comments or suggestions you come up with while using it.`}
                 optional="devCard"
                 onClick={() => this.setState({ clickedCard: 'expanded' })}
                 state={this.state.clickedCard}
@@ -34,19 +36,19 @@ class Onboarding extends Component {
               />
               <UserCard
                 name="Bob Smith"
-                bio="I'm the first dummy account you shouldn't click on me"
+                summary="I'm the first dummy account you shouldn't click on me"
                 optional="dummyUserCard"
                 state={this.state.clickedCard}
               />
               <UserCard
                 name="Jeffrey Spin"
-                bio="Hey this is the second dummy account I like really cool stuff"
+                summary="Hey this is the second dummy account I like really cool stuff"
                 optional="dummyUserCard"
                 state={this.state.clickedCard}
               />
               <UserCard
                 name="Stephen Broderick"
-                bio="Saving the best for last I'm the third dummy account"
+                summary="Saving the best for last I'm the third dummy account"
                 optional="dummyUserCard"
                 state={this.state.clickedCard}
               />
