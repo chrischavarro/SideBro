@@ -3,6 +3,15 @@ const profileController = express.Router();
 const Artist = require('../models/Artist');
 const User = require('../models/User');
 
+profileController.get('/api/profile/artists/:userId', (req, res) => {
+  const { userId } = req.params
+  User.findById(userId)
+    .populate('artists')
+    .exec((err, user) => {
+      res.send(user.artists)
+    })
+})
+
 profileController.post('/api/profile/artists', (req, res) => {
   req.body.map(artist => {
     Artist.find({ name: artist.name})

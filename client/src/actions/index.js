@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO } from './types';
+import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -38,4 +38,11 @@ export const fetchSpotifyInfo = (accessToken) => async dispatch => {
 export const submitArtists = (artists) => async dispatch => {
   axios.post('/api/profile/artists', artists)
   history.push('/getting-started')
+}
+
+export const fetchArtists = (user) => async dispatch => {
+  axios.get(`/api/profile/artists/${user}`)
+    .then( res => {
+      dispatch({ type: FETCH_ARTISTS, payload: res.data })
+    })
 }

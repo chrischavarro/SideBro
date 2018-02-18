@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 import UserCard from './UserCard';
+
 class Onboarding extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      clickedCard: 'hidden'
+    }
+  }
+
+  componentDidMount() {
+    this.props.fetchArtists('5a6c138722dcc97e0b1171f7');
+  }
+
     render() {
+      const { userArtists } = this.props;
       return (
         <div className="row">
           <div className="col s10 offset-s1 card-2 onboardingDiv">
@@ -14,22 +28,27 @@ class Onboarding extends Component {
                 name="Christian Chavarro"
                 bio="I created this app and I'd like to think I'm a cool guy"
                 optional="devCard"
-                onClick={() => console.log('Clicked card')}
+                onClick={() => this.setState({ clickedCard: 'expanded' })}
+                state={this.state.clickedCard}
+                artists={userArtists}
               />
               <UserCard
                 name="Bob Smith"
                 bio="I'm the first dummy account you shouldn't click on me"
                 optional="dummyUserCard"
+                state={this.state.clickedCard}
               />
               <UserCard
                 name="Jeffrey Spin"
                 bio="Hey this is the second dummy account I like really cool stuff"
                 optional="dummyUserCard"
+                state={this.state.clickedCard}
               />
               <UserCard
                 name="Stephen Broderick"
                 bio="Saving the best for last I'm the third dummy account"
                 optional="dummyUserCard"
+                state={this.state.clickedCard}
               />
             </div>
             <div className="col s4 onboardingDescriptionDiv">
@@ -50,8 +69,9 @@ class Onboarding extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.auth,
+    userArtists: state.userArtists
   }
 }
 
-export default connect(mapStateToProps)(Onboarding);
+export default connect(mapStateToProps, actions)(Onboarding);

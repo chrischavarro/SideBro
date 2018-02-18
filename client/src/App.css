@@ -417,8 +417,17 @@ body {
   background-color: #00675b;
 }
 
+.devCard.expanded {
+  width: 75%!important;
+  height: 33vh!important;
+}
+
 .dummyUserCard {
   background-color: grey!important;
+}
+
+.dummyUserCard.expanded {
+  display: none;
 }
 
 .userName {
@@ -426,7 +435,32 @@ body {
   padding: 10px;
 }
 
+.userName.expanded {
+  font-size: 42px;
+  text-align: center;
+}
+
 .userBio {
   font-weight: 200;
   padding: 10px;
+}
+
+.userBio.true {
+
+}
+
+.userArtists {
+
+}
+
+.cardExpandedContent.hidden {
+  display: none;
+}
+
+.cardArtistImage {
+  border-radius: 50%;
+  width: 50px!important;
+  height: 50px!important;
+  display: block;
+  margin: auto;
 }
