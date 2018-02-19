@@ -22,10 +22,10 @@ class ChatDescription extends Component {
 export default ChatDescription;
 // TO DO:
 // Figure out accepting/rejecting request
-// Be able to see the requester's profile
 
 // Create actual chat system
 
 // DONE
 // Automatically accept requests for setup
 // Make a page to manage requests
+// Be able to see the requester's profile

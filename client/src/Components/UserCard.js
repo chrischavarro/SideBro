@@ -3,6 +3,22 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class UserCard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      clickedCard: 'hidden'
+    }
+  }
+
+  toggleCardSize() {
+    const { clickedCard } = this.state
+    if (clickedCard == 'hidden') {
+      this.setState({ clickedCard: 'expanded' })
+    } else if (clickedCard == 'expanded') {
+      this.setState({ clickedCard: 'hidden' })
+    }
+  }
+
   renderArtists() {
     if (this.props.artists) {
       const { artists } = this.props;
@@ -19,21 +35,21 @@ class UserCard extends Component {
 
   render() {
     return (
-      <div className={`col s5 userCard card-2 ${this.props.optional} ${this.props.state}`} onClick={this.props.onClick}>
+      <div className={`col s5 userCard card-2 ${this.props.optional} ${this.state.clickedCard}`} onClick={() => this.toggleCardSize()}>
         <div className={`userName ${this.props.state}`}>
           <div>
             <span>{this.props.name}</span>
             <i
               onClick={() => this.props.sendFriendRequest('5a6c138722dcc97e0b1171f7')}
-              className={`material-icons addButton ${this.props.state}`}>
+              className={`material-icons addButton ${this.state.clickedCard}`}>
               person_add
             </i>
           </div>
         </div>
-        <div className={`userBio ${this.props.state}`}>
+        <div className={`userBio ${this.state.clickedCard}`}>
           {this.props.summary}
         </div>
-        <div className={`cardExpandedContent ${this.props.state}`}>
+        <div className={`cardExpandedContent ${this.state.clickedCard}`}>
           <div className="cardExpandedBio">
             {this.props.bio}
           </div>

@@ -15,7 +15,6 @@ class FriendRequests extends Component {
         const { name, bio, summary, artists } = request.sender
         return (
           <li key={request._id} className="friendRequest">
-            <span className="requestName">{request.sender.name}</span> {request.status}
             <a className="btn-floating btn-large waves-effect waves-light red denyRequestButton">
               <i className="material-icons denyRequestIcon">close</i>
             </a>
@@ -23,24 +22,16 @@ class FriendRequests extends Component {
               <i className="material-icons approveRequestIcon">check</i>
             </a>
             <UserCard
-              name={name}
-              bio={bio}
-              summary={summary}
-              state="expanded"
-              optional="hidden"
-              artists={artists}
+            name={name}
+            bio={bio}
+            summary={summary}
+            artists={artists}
             />
           </li>
         )
       })
     }
   }
-  // <button type="button" className="denyRequest">
-  // <i className="material-icons">close</i>
-  // </button>
-  // <button type="button" className="approveRequest">
-  // <i className="material-icons">check</i>
-  // </button>
 
   render() {
     console.log(this.props.requests)
