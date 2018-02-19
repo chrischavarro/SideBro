@@ -523,3 +523,14 @@ body {
 }
 
 /* FRIEND REQUEST STYLING */
+.friendRequest {
+  font-size: 28px;
+}
+
+.denyRequestIcon, .approveRequestIcon {
+  font-size: 26px!important;
+}
+
+.denyRequestButton, .approveRequestButton {
+  margin: 0px 5px;
+}

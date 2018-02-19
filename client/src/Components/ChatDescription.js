@@ -21,7 +21,6 @@ class ChatDescription extends Component {
 
 export default ChatDescription;
 // TO DO:
-// Make a page to manage requests
 // Figure out accepting/rejecting request
 // Be able to see the requester's profile
 
@@ -29,3 +28,4 @@ export default ChatDescription;
 
 // DONE
 // Automatically accept requests for setup
+// Make a page to manage requests

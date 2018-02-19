@@ -46,8 +46,5 @@ class UserCard extends Component {
     )
   }
 }
-// <button className="addBroButton">
-// {"Add Bro"}
-// </button>
 
 export default connect(null, actions)(UserCard);
