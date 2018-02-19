@@ -538,3 +538,11 @@ body {
 .denyRequestButton, .approveRequestButton {
   margin: 0px 5px;
 }
+
+.userCard.expanded {
+  transition: all .3s;
+}
+
+.userCard.hidden:hover {
+  background-color: #00675b;
+}

@@ -14,19 +14,29 @@ class FriendRequests extends Component {
       return requests.map(request => {
         const { name, bio, summary, artists } = request.sender
         return (
-          <li key={request._id} className="friendRequest">
-            <a className="btn-floating btn-large waves-effect waves-light red denyRequestButton">
-              <i className="material-icons denyRequestIcon">close</i>
-            </a>
-            <a className="btn-floating btn-large waves-effect waves-light approveRequestButton">
-              <i className="material-icons approveRequestIcon">check</i>
-            </a>
+          <li key={request._id} className="friendRequest card-3">
             <UserCard
-            name={name}
-            bio={bio}
-            summary={summary}
-            artists={artists}
+              name={name}
+              bio={bio}
+              summary={summary}
+              artists={artists}
             />
+            <div className="col s5">
+              <div
+
+                className="btn-floating btn-large waves-effect waves-light red denyRequestButton"
+                onClick={() => this.props.denyRequest(request._id)}
+              >
+                <i className="material-icons denyRequestIcon">close</i>
+              </div>
+              <button
+                type="button"
+                className="btn-floating btn-large waves-effect waves-light approveRequestButton"
+                onClick={() => this.props.approveRequest(request._id)}
+              >
+                <i className="material-icons approveRequestIcon">check</i>
+              </button>
+            </div>
           </li>
         )
       })
@@ -38,7 +48,7 @@ class FriendRequests extends Component {
     return (
       <div className="row">
         <div className="col s10 offset-s1 card-2">
-          <div className="requestContainer col s10 offset-s1 card-3">
+          <div className="requestContainer">
             Requests
             <ul>
               {this.renderRequests()}
