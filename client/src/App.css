@@ -393,7 +393,7 @@ body {
   padding: 0px 30px 0px 0px!important;
 }
 
-.onboardingDescription1, .onboardingDescription2 {
+.onboardingDescription1, .onboardingDescription2, .chatDescriptionText {
   font-size: 28px;
   text-align: center;
   transition: all .3s;
@@ -504,4 +504,20 @@ body {
 
 .addButton.hidden {
   display: none;
+}
+
+/* CHAT DESCRIPTION STYLING */
+.chatWindow {
+  margin-left: 2%!important;
+  margin-top: 28px;
+}
+
+.chatUserName {
+  text-align: center;
+  font-size: 26px;
+  padding-top: 10px;
+}
+
+.chatDescriptionText {
+  margin-left: 5%!important;
 }
