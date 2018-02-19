@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS } from './types';
+import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -52,4 +52,11 @@ export const sendFriendRequest = (user) => async dispatch => {
   if (user === '5a6c138722dcc97e0b1171f7') {
     history.push('/chatting')
   }
+}
+
+export const fetchRequests = () => async dispatch => {
+  axios.get('/api/profile/requests')
+    .then(res => {
+      dispatch({ type: FETCH_REQUESTS, payload: res.data })
+    })
 }
