@@ -46,3 +46,10 @@ export const fetchArtists = (user) => async dispatch => {
       dispatch({ type: FETCH_ARTISTS, payload: res.data })
     })
 }
+
+export const sendFriendRequest = (user) => async dispatch => {
+  axios.post('/api/friend_request', user)
+  if (user === '5a6c138722dcc97e0b1171f7') {
+    history.push('/chatting')
+  }
+}

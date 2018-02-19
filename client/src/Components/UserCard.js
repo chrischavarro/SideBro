@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class UserCard extends Component {
   renderArtists() {
@@ -19,7 +21,14 @@ class UserCard extends Component {
     return (
       <div className={`col s5 userCard card-2 ${this.props.optional} ${this.props.state}`} onClick={this.props.onClick}>
         <div className={`userName ${this.props.state}`}>
-          {this.props.name} <i className={`material-icons addButton ${this.props.state}`}>person_add</i>
+          <div>
+            <span>{this.props.name}</span>
+            <i
+              onClick={() => this.props.sendFriendRequest('5a6c138722dcc97e0b1171f7')}
+              className={`material-icons addButton ${this.props.state}`}>
+              person_add
+            </i>
+          </div>
         </div>
         <div className={`userBio ${this.props.state}`}>
           {this.props.summary}
@@ -41,4 +50,4 @@ class UserCard extends Component {
 // {"Add Bro"}
 // </button>
 
-export default UserCard
+export default connect(null, actions)(UserCard);

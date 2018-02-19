@@ -393,12 +393,26 @@ body {
   padding: 0px 30px 0px 0px!important;
 }
 
-.onboardingDescription1 {
+.onboardingDescription1, .onboardingDescription2 {
   font-size: 28px;
   text-align: center;
+  transition: all .3s;
 }
 
-.onboardingDescription1 li {
+.onboardingDescription1.expanded {
+  display: none;
+}
+
+.onboardingDescription2.hidden {
+  display: none;
+}
+
+.onboardingDescription2 {
+  padding-right: 14%!important;
+  padding-top: 20%!important;
+}
+
+.onboardingDescription1, .onboardingDescription2 li {
   padding: 0px 0px 15px 0px;
 }
 
@@ -423,6 +437,11 @@ body {
   /* padding-top: 35px!important; */
   padding-bottom: 35px!important;
   margin-left: 13%!important
+}
+
+.devCard.expanded {
+  background-color: #009688;
+  cursor: default;
 }
 
 .dummyUserCard {
@@ -475,6 +494,12 @@ body {
 
 .addButton {
   font-size: 42px!important;
+  transition: all .2s;
+}
+
+.addButton:hover {
+  cursor: pointer;
+  color: #e91e63;
 }
 
 .addButton.hidden {
