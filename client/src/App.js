@@ -11,6 +11,7 @@ import SpotifySetup from './Components/Form/SpotifySetup';
 import Setup from './Components/Setup';
 import Onboarding from './Components/Onboarding';
 import ChatDescription from './Components/ChatDescription';
+import FriendRequests from './Components/FriendRequests' ;
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/setup/:accessToken/:refreshToken" component={Setup}/>
             <Route exact path="/getting-started" component={Onboarding}/>
             <Route exact path="/chatting" component={ChatDescription}/>
+            <Route exact path="/requests" component={FriendRequests}/>
           </div>
         </Router>
       </div>
