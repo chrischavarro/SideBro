@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
-import UserCard from './UserCard';
+import * as actions from '../../actions';
+import UserCard from '../UserCard';
 
 class Onboarding extends Component {
   constructor(props) {

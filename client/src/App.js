@@ -8,9 +8,9 @@ import history from './history';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 import SpotifySetup from './Components/Form/SpotifySetup';
-import Setup from './Components/Setup';
-import Onboarding from './Components/Onboarding';
-import ChatDescription from './Components/ChatDescription';
+import Setup from './Components/UserSetup/Setup';
+import Onboarding from './Components/UserSetup/Onboarding';
+import ChatDescription from './Components/UserSetup/ChatDescription';
 import FriendRequests from './Components/FriendRequests' ;
 
 class App extends Component {

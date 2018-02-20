@@ -12,9 +12,9 @@ class UserCard extends Component {
 
   toggleCardSize() {
     const { clickedCard } = this.state
-    if (clickedCard == 'hidden') {
+    if (clickedCard === 'hidden') {
       this.setState({ clickedCard: 'expanded' })
-    } else if (clickedCard == 'expanded') {
+    } else if (clickedCard === 'expanded') {
       this.setState({ clickedCard: 'hidden' })
     }
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatWindow from './ChatWindow';
+import ChatWindow from '../ChatWindow';
 
 class ChatDescription extends Component {
   render() {
@@ -20,12 +20,3 @@ class ChatDescription extends Component {
 }
 
 export default ChatDescription;
-// TO DO:
-// Figure out accepting/rejecting request
-
-// Create actual chat system
-
-// DONE
-// Automatically accept requests for setup
-// Make a page to manage requests
-// Be able to see the requester's profile
