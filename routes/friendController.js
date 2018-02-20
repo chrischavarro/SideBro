@@ -4,17 +4,17 @@ const User = require('../models/User');
 const Request = require('../models/Request');
 
 friendController.post('/api/friend_request', (req, res) => {
-  const requestId = Object.keys(req.body).toString();
-  const userId = req.user._id;
+  let requestId = Object.keys(req.body).toString();
+  let userId = req.user._id;
 
-  if (requestId = '5a6c138722dcc97e0b1171f7') {
-    User.findById(userId)
-      .exec((err, user) => {
-        user.friends.push(requestId);
-        user.save();
-      })
-  }
-  else {
+  // if (requestId = '5a6c138722dcc97e0b1171f7') {
+  //   User.findById(userId)
+  //     .exec((err, user) => {
+  //       user.friends.push(requestId);
+  //       user.save();
+  //     })
+  // }
+  // else {
     let newRequest = new Request({
       sender: userId,
       recipient: requestId,
@@ -22,11 +22,13 @@ friendController.post('/api/friend_request', (req, res) => {
     })
     User.findById(userId)
       .exec((err, requestedUser) => {
+        if (err) { console.log('ERROR', err) }
         requestedUser.requests.push(newRequest._id)
+        console.log('Request saved!')
         requestedUser.save()
       })
     newRequest.save()
-  }
+  // }
   res.send('Request sent')
 })
 

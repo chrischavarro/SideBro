@@ -10,7 +10,7 @@ class FriendRequests extends Component {
 
   renderRequests() {
     const { requests } = this.props
-    if (requests) {
+    if (requests && requests.length !== 0) {
       return requests.map(request => {
         const { name, bio, summary, artists } = request.sender
         return (
@@ -40,6 +40,12 @@ class FriendRequests extends Component {
           </li>
         )
       })
+    } else if (requests && requests.length === 0) {
+      return (
+        <div>
+          {"You don't have any requests. Start sending some of your own!"}
+        </div>
+      )
     }
   }
 
