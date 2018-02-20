@@ -20,24 +20,28 @@ requestController.post('/api/profile/requests/approve', (req, res) => {
   // TO DO: Remove requests for user as well?
   const requestId = Object.keys(req.body).toString();
   const userId = req.user._id;
-  console.log('REQUEST ID', requestId)
   Request.findById(requestId)
     .exec((err, request) => {
+      if (err) { console.log('ERROR FETCHING REQUEST', err) }
       console.log('REQUEST', request)
       User.findById(userId)
         .exec((err, user) => {
-          user.friends.push(request.sender)
-          user.save()
+          if (err) { console.log('ERROR ON USER FRIEND PUSH', err)}
+          user.friends.push(request.sender);
+          user.requests = user.requests.filter(item => { item._id !== request._id });
+          user.save();
+
+          Request.remove({ _id: requestId })
+          .exec((err, removed) => {
+            if (err) {
+              console.log('ERROR', err)
+            } else {
+              console.log('REMOVED', removed)
+            }
+          })
         })
     })
-    Request.remove({ _id: requestId })
-      .exec((err, removed) => {
-        if (err) {
-          console.log('ERROR', err)
-        } else {
-          console.log('REMOVED', removed)
-        }
-      })
+
   res.send('deleted')
 })
 
