@@ -7,4 +7,4 @@ export const SEND_FRIEND_REQUEST = 'send_friend_request';
 export const FETCH_REQUESTS = 'fetch_requests';
 export const APPROVE_REQUEST = 'approve_request';
 export const DENY_REQUEST = 'deny_request';
-export const FETCH_BROS = 'fetch_bros';
+export const FETCH_USERS = 'fetch_users';

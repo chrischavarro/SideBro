@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import history from '../history';
+
 import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
 import Chatroom from './Chat/Chatroom';
+import UserCard from './UserCard';
 
 class Dashboard extends Component {
   componentDidMount() {
-    this.props.fetchBros()
+    this.props.fetchUsers()
   }
 
   handleSubmit(values) {
@@ -16,7 +18,20 @@ class Dashboard extends Component {
   }
 
   renderBros() {
-
+    const { users } = this.props
+    if (users) {
+      return users.map(user => {
+        const { artists, bio, summary, name } = user
+        return (
+          <UserCard
+            name={name}
+            bio={bio}
+            summary={summary}
+            artists={artists}
+          />
+        )
+      })
+    }
   }
 
   renderDashboard() {
@@ -40,7 +55,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props.auth)
+    console.log('USERS', this.props.users)
     return (
       <div>
         <Navbar />
@@ -52,7 +67,8 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.auth,
+    users: state.users
   }
 }
 
