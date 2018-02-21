@@ -7,8 +7,16 @@ import WizardForm from './Form/WizardForm';
 import Chatroom from './Chat/Chatroom';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.fetchBros()
+  }
+
   handleSubmit(values) {
     this.props.createProfile(values)
+  }
+
+  renderBros() {
+
   }
 
   renderDashboard() {
@@ -24,7 +32,7 @@ class Dashboard extends Component {
     } else {
       return (
         <div>
-          {"Grid layout goes here"}
+          {this.renderBros()}
           <Chatroom />
         </div>
       )

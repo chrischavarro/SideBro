@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS, APPROVE_REQUEST, DENY_REQUEST } from './types';
+import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS, APPROVE_REQUEST, DENY_REQUEST, FETCH_BROS } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -69,4 +69,11 @@ export const approveRequest = (request) => async dispatch => {
 export const denyRequest = (request) => async dispatch => {
   axios.post('/api/profile/requests/deny', request);
   dispatch({ type: DENY_REQUEST, payload: request });
+}
+
+export const fetchBros = () => async dispatch => {
+  axios.get('/api/users')
+    .then(res => {
+      console.log(res.data)
+    })
 }
