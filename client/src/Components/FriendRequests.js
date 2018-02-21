@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import UserCard from './UserCard';
+import Navbar from './Navbar';
 
 class FriendRequests extends Component {
   componentDidMount() {
@@ -53,7 +54,8 @@ class FriendRequests extends Component {
     console.log(this.props.requests)
     return (
       <div className="row">
-        <div className="col s10 offset-s1 card-2">
+      <Navbar />
+        <div className="col s10 offset-s1 card-1">
           <div className="requestContainer">
             Requests
             <ul>
