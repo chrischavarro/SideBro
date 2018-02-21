@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import history from '../history';
+import ScrollArea from 'react-scrollbar';
 
 import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
@@ -17,17 +18,18 @@ class Dashboard extends Component {
     this.props.createProfile(values)
   }
 
-  renderBros() {
+  renderUsers() {
     const { users } = this.props
     if (users) {
       return users.map(user => {
-        const { artists, bio, summary, name } = user
+        const { artists, bio, summary, name, _id } = user
         return (
           <UserCard
             name={name}
             bio={bio}
             summary={summary}
             artists={artists}
+            key={_id}
           />
         )
       })
@@ -47,7 +49,7 @@ class Dashboard extends Component {
     } else {
       return (
         <div>
-          {this.renderBros()}
+          {this.renderUsers()}
           <Chatroom />
         </div>
       )
@@ -57,9 +59,16 @@ class Dashboard extends Component {
   render() {
     console.log('USERS', this.props.users)
     return (
-      <div>
+      <div className="row">
         <Navbar />
-        {this.renderDashboard()}
+        <ScrollArea
+          speed={0.8}
+          horizontal={false}
+        >
+          <div className="col s10 offset-s1 card-1 dashboardUserContainer">
+            {this.renderDashboard()}
+          </div>
+        </ScrollArea>
       </div>
     )
   }

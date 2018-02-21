@@ -35,7 +35,10 @@ class UserCard extends Component {
 
   render() {
     return (
-      <div className={`col s5 userCard ${this.state.clickedCard} card-2 ${this.props.optional}`} onClick={() => this.toggleCardSize()}>
+      <div className={`col s5 userCard ${this.state.clickedCard} card-2 ${this.props.optional}`}
+        key={`${this.props.key}` }
+        onClick={() => this.toggleCardSize()}
+      >
         <div className={`userName ${this.state.clickedCard}`}>
           <div>
             <span>{this.props.name}</span>

@@ -540,9 +540,17 @@ body {
 }
 
 .userCard.expanded {
-  transition: all .3s;
+  transition: all .2s;
+  width: 88%!important;
 }
 
 .userCard.hidden:hover {
   background-color: #00675b;
+}
+
+/* DASHBOARD STYLING */
+.dashboardUserContainer {
+  height: 80vh;
+  margin-top: 10vh;
+  padding-left: 5%!important;
 }
