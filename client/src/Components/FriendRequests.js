@@ -43,7 +43,7 @@ class FriendRequests extends Component {
       })
     } else if (requests && requests.length === 0) {
       return (
-        <div>
+        <div className="noRequestMessage">
           {"You don't have any requests. Start sending some of your own!"}
         </div>
       )
@@ -55,9 +55,8 @@ class FriendRequests extends Component {
     return (
       <div className="row">
       <Navbar />
-        <div className="col s10 offset-s1 card-1">
+        <div className="col s10 offset-s1 card-1 requestDiv">
           <div className="requestContainer">
-            Requests
             <ul>
               {this.renderRequests()}
             </ul>

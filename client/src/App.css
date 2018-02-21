@@ -422,8 +422,10 @@ body {
   text-align: left;
   background-color: #009688;
   color: #fff;
+  /* font-size: 1em; */
   font-size: 24px;
   transition: all .2s;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   border-radius: 3px;
 }
 
@@ -478,8 +480,8 @@ body {
 
 .cardArtistImage {
   border-radius: 50%;
-  width: 70px!important;
-  height: 70px!important;
+  width: 100px!important;
+  height: 100px!important;
   display: block;
   margin: auto;
   margin-top: 10px;
@@ -524,6 +526,16 @@ body {
 }
 
 /* FRIEND REQUEST STYLING */
+.requestDiv {
+  margin-top: 8vh;
+  padding-left: 5%!important;
+}
+
+.noRequestMessage {
+  text-align: center;
+  font-size: 2em;
+}
+
 .friendRequest {
   font-size: 28px;
 }
@@ -542,7 +554,9 @@ body {
 
 .userCard.expanded {
   transition: all .2s;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   width: 88%!important;
+  height: 100%!important;
 }
 
 .userCard.hidden:hover {

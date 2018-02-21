@@ -26,7 +26,7 @@ class UserCard extends Component {
         return (
           <div key={artist._id} className="col s3" style={{ width: '20%' }}>
             <img src={artist.image} className="cardArtistImage" alt={artist.name} />
-            <div style={{ textAlign: 'center', fontSize: '14px' }}>{artist.name}</div>
+            <div style={{ textAlign: 'center', fontSize: '20px' }}>{artist.name}</div>
           </div>
         )
       })

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import history from '../history';
 import ScrollArea from 'react-scrollbar';
+import AnimateHeight from 'react-animate-height';
 
 import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
@@ -24,6 +25,7 @@ class Dashboard extends Component {
       return users.map(user => {
         const { artists, bio, summary, name, _id } = user
         return (
+          
           <UserCard
             name={name}
             bio={bio}
@@ -31,6 +33,7 @@ class Dashboard extends Component {
             artists={artists}
             key={_id}
           />
+
         )
       })
     }
