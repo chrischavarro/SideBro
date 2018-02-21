@@ -554,3 +554,7 @@ body {
   margin-top: 10vh;
   padding-left: 5%!important;
 }
+
+.scrollarea {
+  height: 80vh!important
+}

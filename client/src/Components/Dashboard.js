@@ -55,20 +55,30 @@ class Dashboard extends Component {
       )
     }
   }
-
+  handleScroll(scrollData){
+    console.log(scrollData);
+  }
   render() {
-    console.log('USERS', this.props.users)
+    let scrollbarStyles = {borderRadius: 5};
+
     return (
       <div className="row">
         <Navbar />
-        <ScrollArea
-          speed={0.8}
-          horizontal={false}
-        >
           <div className="col s10 offset-s1 card-1 dashboardUserContainer">
+            <ScrollArea
+            className="area"
+            contentClassName="content"
+            verticalScrollbarStyle={scrollbarStyles}
+            verticalContainerStyle={scrollbarStyles}
+            horizontalScrollbarStyle={scrollbarStyles}
+            horizontalContainerStyle={scrollbarStyles}
+            smoothScrolling= {true}
+            minScrollSize={40}
+            onScroll={this.handleScroll}
+            >
             {this.renderDashboard()}
+            </ScrollArea>
           </div>
-        </ScrollArea>
       </div>
     )
   }
