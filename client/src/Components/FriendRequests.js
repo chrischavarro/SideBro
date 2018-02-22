@@ -4,6 +4,8 @@ import * as actions from '../actions';
 import UserCard from './UserCard';
 import Navbar from './Navbar';
 
+import MultiSelectField from './TestInput'
+
 class FriendRequests extends Component {
   componentDidMount() {
       this.props.fetchRequests();
@@ -60,6 +62,7 @@ class FriendRequests extends Component {
             <ul>
               {this.renderRequests()}
             </ul>
+            <MultiSelectField />
           </div>
         </div>
       </div>

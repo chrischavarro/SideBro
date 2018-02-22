@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS, APPROVE_REQUEST, DENY_REQUEST, FETCH_USERS } from './types';
+import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS,
+  APPROVE_REQUEST, DENY_REQUEST, FETCH_USERS, FETCH_ALL_ARTISTS } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -75,5 +76,12 @@ export const fetchUsers = () => async dispatch => {
   axios.get('/api/users')
     .then(res => {
       dispatch({ type: FETCH_USERS, payload: res.data })
+    })
+}
+
+export const fetchAllArtists = () => async dispatch => {
+  axios.get('/spotify/artists')
+    .then(res => {
+      dispatch({ type: FETCH_ALL_ARTISTS, payload: res.data })
     })
 }

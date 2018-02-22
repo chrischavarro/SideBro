@@ -4,6 +4,9 @@ import * as actions from '../actions';
 import history from '../history';
 import ScrollArea from 'react-scrollbar';
 import AnimateHeight from 'react-animate-height';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+import PropTypes from 'prop-types'
 
 import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
@@ -11,12 +14,66 @@ import Chatroom from './Chat/Chatroom';
 import UserCard from './UserCard';
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      removeSelected: true,
+      disabled: false,
+      stayOpen: false,
+      artistValue: [],
+      rtl: false
+    }
+  }
+
+  propTypes: {
+    label: PropTypes.string,
+  }
+
+  handleSelectChange(artistValue) {
+    console.log('You have selected', artistValue)
+    // const { artistValue } = this.state;
+    this.setState({ artistValue });
+  }
+
+  toggleRtl(e) {
+    let rt1 = e.target.checkd;
+    this.setState({ rt1 });
+  }
+
   componentDidMount() {
     this.props.fetchUsers()
+    this.props.fetchAllArtists()
   }
 
   handleSubmit(values) {
     this.props.createProfile(values)
+  }
+
+  renderArtistFilters() {
+    const artistFilters = this.props.filters
+    let artistLabels = []
+    if (artistFilters) {
+      artistFilters.forEach(artist => {
+        artistLabels.push({ label: artist.name, value: artist._id })
+      })
+    }
+    const { disabled, stayOpen, artistValue } = this.state;
+    return (
+      <div className="col s3">
+        <Select
+          closeOnSelect={false}
+          disabled={disabled}
+          multi
+          onChange={this.handleSelectChange.bind(this)}
+          options={artistLabels}
+          placeholder="Select Artists"
+          removeSelected={this.state.removeSelected}
+          rt1={this.state.rt1}
+          simpleValue
+          value={artistValue}
+        />
+      </div>
+    )
   }
 
   renderUsers() {
@@ -25,7 +82,6 @@ class Dashboard extends Component {
       return users.map(user => {
         const { artists, bio, summary, name, _id } = user
         return (
-          
           <UserCard
             name={name}
             bio={bio}
@@ -33,7 +89,6 @@ class Dashboard extends Component {
             artists={artists}
             key={_id}
           />
-
         )
       })
     }
@@ -61,10 +116,19 @@ class Dashboard extends Component {
 
   render() {
     let scrollbarStyles = {borderRadius: 5};
-    console.log(this.props.users)
+    // console.log('USERS', this.props.users)
+    console.log('FILTERS', this.props.filters)
+    console.log('ARTIST VALUES', this.state.artistValue)
+
     return (
       <div className="row">
         <Navbar />
+
+          <div className="col s10 offset-s1 card-1 filterDiv">
+            Filter By
+            {this.renderArtistFilters()}
+          </div>
+
           <div className="col s10 offset-s1 card-1 dashboardUserContainer">
             <ScrollArea
               className="area"
@@ -87,7 +151,8 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
-    users: state.users
+    users: state.users,
+    filters: state.filter
   }
 }
 

@@ -553,7 +553,7 @@ body {
 }
 
 .userCard.expanded {
-  transition: all .2s;
+  transition: all .1s;
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   width: 88%!important;
   height: 100%!important;
@@ -564,11 +564,20 @@ body {
 }
 
 /* DASHBOARD STYLING */
+.Select--multi {
+  /* width: 30%!important; */
+}
+
 .dashboardUserContainer {
   height: 80vh;
-  margin-top: 8vh;
+  margin-top: 4vh;
   padding-left: 5%!important;
   border-radius: 5px;
+}
+
+.filterDiv {
+  margin-top: 4vh;
+  padding: 20px 0px!important;
 }
 
 .scrollarea {

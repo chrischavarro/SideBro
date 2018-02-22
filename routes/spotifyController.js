@@ -3,6 +3,7 @@ const spotifyController = express.Router();
 const randomstring = require('randomstring');
 const Spotify = require('spotify-web-api-node');
 const keys = require('../config/keys');
+const Artist = require('../models/Artist');
 
 const spotifyApi = new Spotify({
   clientId: keys.spotifyClientID,
@@ -26,5 +27,12 @@ spotifyController.get('/callback', (req, res) => {
     res.redirect('/#/error?insvalid_token');
   });
 });
+
+spotifyController.get('/artists', (req, res) => {
+    Artist.find()
+      .exec((err, artists) => {
+        res.send(artists)
+      })
+})
 
 module.exports = spotifyController;
