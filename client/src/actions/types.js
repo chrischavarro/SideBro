@@ -9,3 +9,7 @@ export const APPROVE_REQUEST = 'approve_request';
 export const DENY_REQUEST = 'deny_request';
 export const FETCH_USERS = 'fetch_users';
 export const FETCH_ALL_ARTISTS = 'fetch_all_artists';
+export const FILTER_BY_ARTISTS = 'filter_by_artists';
+export const FILTER_BY_TAGS = 'filter_by_tags';
+export const FETCH_LOCATIONS = 'fetch_all_locations';
+export const FILTER_BY_LOCATIONS = 'filter_by_locations';

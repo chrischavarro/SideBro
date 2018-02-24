@@ -6,7 +6,7 @@ import spotifyReducer from './spotifyReducer';
 import artistReducer from './artistReducer';
 import requestsReducer from './requestsReducer';
 import userReducer from './userReducer';
-import filterReducer from './filterReducer';
+import filterArtistReducer from './filterArtistReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -16,5 +16,5 @@ export default combineReducers({
   userArtists: artistReducer,
   requests: requestsReducer,
   users: userReducer,
-  filter: filterReducer
+  filterArtists: filterArtistReducer
 });

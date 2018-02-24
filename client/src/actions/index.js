@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS,
-  APPROVE_REQUEST, DENY_REQUEST, FETCH_USERS, FETCH_ALL_ARTISTS } from './types';
+  APPROVE_REQUEST, DENY_REQUEST, FETCH_USERS, FETCH_ALL_ARTISTS, FILTER_BY_ARTISTS,
+  FILTER_BY_TAGS, FETCH_LOCATIONS, FILTER_BY_LOCATIONS } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -83,5 +84,18 @@ export const fetchAllArtists = () => async dispatch => {
   axios.get('/spotify/artists')
     .then(res => {
       dispatch({ type: FETCH_ALL_ARTISTS, payload: res.data })
+    })
+}
+
+export const filterByArtists = (artists) => async dispatch => {
+  console.log('FILTER ACTION', artists)
+  const res = await axios.post(`/api/filter/artists`, artists)
+  dispatch({ type: FILTER_BY_ARTISTS, payload: res.data })
+}
+
+export const fetchLocations = () => async dispatch => {
+  axios.get('/api/locations')
+    .then(res => {
+      console.log('LOCATIONS', res.data)
     })
 }

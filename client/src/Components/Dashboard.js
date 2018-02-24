@@ -12,68 +12,17 @@ import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
 import Chatroom from './Chat/Chatroom';
 import UserCard from './UserCard';
+import MusicFilter from './Filters/MusicFilter';
+import TagFilter from './Filters/TagFilter';
+import LocationFilter from './Filters/LocationFilter';
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      removeSelected: true,
-      disabled: false,
-      stayOpen: false,
-      artistValue: [],
-      rtl: false
-    }
-  }
-
-  propTypes: {
-    label: PropTypes.string,
-  }
-
-  handleSelectChange(artistValue) {
-    console.log('You have selected', artistValue)
-    // const { artistValue } = this.state;
-    this.setState({ artistValue });
-  }
-
-  toggleRtl(e) {
-    let rt1 = e.target.checkd;
-    this.setState({ rt1 });
-  }
-
   componentDidMount() {
     this.props.fetchUsers()
-    this.props.fetchAllArtists()
   }
 
   handleSubmit(values) {
     this.props.createProfile(values)
-  }
-
-  renderArtistFilters() {
-    const artistFilters = this.props.filters
-    let artistLabels = []
-    if (artistFilters) {
-      artistFilters.forEach(artist => {
-        artistLabels.push({ label: artist.name, value: artist._id })
-      })
-    }
-    const { disabled, stayOpen, artistValue } = this.state;
-    return (
-      <div className="col s3">
-        <Select
-          closeOnSelect={false}
-          disabled={disabled}
-          multi
-          onChange={this.handleSelectChange.bind(this)}
-          options={artistLabels}
-          placeholder="Select Artists"
-          removeSelected={this.state.removeSelected}
-          rt1={this.state.rt1}
-          simpleValue
-          value={artistValue}
-        />
-      </div>
-    )
   }
 
   renderUsers() {
@@ -117,16 +66,15 @@ class Dashboard extends Component {
   render() {
     let scrollbarStyles = {borderRadius: 5};
     // console.log('USERS', this.props.users)
-    console.log('FILTERS', this.props.filters)
-    console.log('ARTIST VALUES', this.state.artistValue)
-
     return (
       <div className="row">
         <Navbar />
 
           <div className="col s10 offset-s1 card-1 filterDiv">
             Filter By
-            {this.renderArtistFilters()}
+            <MusicFilter />
+            <TagFilter />
+            <LocationFilter />
           </div>
 
           <div className="col s10 offset-s1 card-1 dashboardUserContainer">
@@ -151,8 +99,7 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
-    users: state.users,
-    filters: state.filter
+    users: state.users
   }
 }
 

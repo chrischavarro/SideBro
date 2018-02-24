@@ -568,9 +568,13 @@ body {
   /* width: 30%!important; */
 }
 
+.Select-placeholder {
+  display: none;
+}
+
 .dashboardUserContainer {
   height: 80vh;
-  margin-top: 4vh;
+  margin-top: 2vh;
   padding-left: 5%!important;
   border-radius: 5px;
 }
