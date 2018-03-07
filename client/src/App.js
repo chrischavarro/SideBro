@@ -13,6 +13,7 @@ import Onboarding from './Components/UserSetup/Onboarding';
 import ChatDescription from './Components/UserSetup/ChatDescription';
 import FriendRequests from './Components/FriendRequests' ;
 import MultiSelectField from './Components/TestInput';
+import Chat from './Components/Chat';
 
 class App extends Component {
   componentDidMount() {
@@ -31,7 +32,7 @@ class App extends Component {
             <Route exact path="/getting-started" component={Onboarding}/>
             <Route exact path="/chatting" component={ChatDescription}/>
             <Route exact path="/requests" component={FriendRequests}/>
-            <Route exact path="/chats" component={MultiSelectField} />
+            <Route exact path="/chats" component={Chat} />
           </div>
         </Router>
       </div>

@@ -7,6 +7,7 @@ const logger = require('morgan');
 // const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const io = require('socket.io')();
 
 const authController = require('./routes/authController');
 const seedController = require('./routes/seedController');
@@ -53,6 +54,15 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+io.on('connection', (socket) => {
+  socket.on('SEND_MESSAGE', function(data){
+    io.emit('RECEIVE_MESSAGE', data);
+  })
+});
+
+const port = 8001
+io.listen(port)
 
 app.listen(5005);
 
