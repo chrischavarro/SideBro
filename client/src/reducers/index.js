@@ -7,6 +7,7 @@ import artistReducer from './artistReducer';
 import requestsReducer from './requestsReducer';
 import userReducer from './userReducer';
 import filterArtistReducer from './filterArtistReducer';
+import chatReducer from './chatReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   userArtists: artistReducer,
   requests: requestsReducer,
   users: userReducer,
-  filterArtists: filterArtistReducer
+  filterArtists: filterArtistReducer,
+  friends: chatReducer
 });

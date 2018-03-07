@@ -18,6 +18,7 @@ const friendController = require('./routes/friendController');
 const requestController = require('./routes/requestController');
 const userController = require('./routes/userController');
 const filterController = require('./routes/filterController');
+const chatController = require('./routes/chatController');
 
 require('./services/passport');
 const app = express();
@@ -47,6 +48,7 @@ app.use('/', friendController);
 app.use('/', requestController);
 app.use('/', userController);
 app.use('/api', filterController);
+app.use('/api', chatController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
