@@ -14,3 +14,4 @@ export const FILTER_BY_TAGS = 'filter_by_tags';
 export const FETCH_LOCATIONS = 'fetch_all_locations';
 export const FILTER_BY_LOCATIONS = 'filter_by_locations';
 export const FETCH_FRIENDS = 'fetch_friends';
+export const FETCH_CHAT = 'fetch_chat';

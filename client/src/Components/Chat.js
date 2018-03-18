@@ -19,11 +19,10 @@ class Chat extends Component {
   }
 
   renderFriends() {
-    // const { friends } = this.props
     if (this.props.friends) {
       return this.props.friends.map(friend => {
         return (
-          <li>
+          <li key={friend._id} onClick={() => this.props.fetchChat(friend._id)}>
           {friend.name}
           </li>
         )
@@ -33,6 +32,7 @@ class Chat extends Component {
 
   render() {
     console.log(this.props.friends)
+    console.log(this.props.chatHistory)
     return (
       <div className="row">
         <Navbar/>
@@ -50,7 +50,8 @@ class Chat extends Component {
 
 function mapStateToProps(state) {
   return {
-    friends: state.friends
+    friends: state.friends,
+    chatHistory: state.chatHistory
   }
 }
 

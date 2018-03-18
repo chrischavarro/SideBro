@@ -8,6 +8,7 @@ import requestsReducer from './requestsReducer';
 import userReducer from './userReducer';
 import filterArtistReducer from './filterArtistReducer';
 import chatReducer from './chatReducer';
+import chatHistoryReducer from './chatHistoryReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   requests: requestsReducer,
   users: userReducer,
   filterArtists: filterArtistReducer,
-  friends: chatReducer
+  friends: chatReducer,
+  chatHistory: chatHistoryReducer
 });

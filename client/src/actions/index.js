@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_TAGS, FETCH_SPOTIFY_INFO, FETCH_ARTISTS, FETCH_REQUESTS,
   APPROVE_REQUEST, DENY_REQUEST, FETCH_USERS, FETCH_ALL_ARTISTS, FILTER_BY_ARTISTS,
-  FILTER_BY_TAGS, FETCH_LOCATIONS, FILTER_BY_LOCATIONS, FETCH_FRIENDS } from './types';
+  FILTER_BY_TAGS, FETCH_LOCATIONS, FILTER_BY_LOCATIONS, FETCH_FRIENDS, FETCH_CHAT } from './types';
 import history from '../history';
 
 export const fetchUser = () => async dispatch => {
@@ -103,4 +103,9 @@ export const fetchLocations = () => async dispatch => {
 export const fetchFriends = () => async dispatch => {
   const res = await axios.get('/api/profile/friends')
   dispatch({ type: FETCH_FRIENDS, payload: res.data })
+}
+
+export const fetchChat = (friendId) => async dispatch => {
+  const res = await axios.get(`/api/chat/${friendId}`);
+  dispatch({ type: FETCH_CHAT, payload: res.data});
 }
