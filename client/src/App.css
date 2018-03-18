@@ -595,3 +595,22 @@ nav {
 .brand-logo {
   margin-left: 20px;
 }
+
+/* CHAT PAGE STYLING */
+
+.chatNameContainer {
+  margin: 2% 2% 0px 3%!important;
+}
+
+.chatContainer {
+  margin-top: 2%;
+}
+
+.chatContent {
+  padding: 50px;
+}
+
+.chatTitle {
+  text-align: center;
+  padding-bottom: 20px;
+}

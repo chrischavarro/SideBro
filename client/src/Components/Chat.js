@@ -6,13 +6,13 @@ import Navbar from './Navbar';
 import ChatRoom from './ChatRoom';
 
 class Chat extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeChat: ''
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //
+  //   this.state = {
+  //     activeChat: ''
+  //   };
+  // }
 
   componentDidMount() {
     this.props.fetchFriends()
@@ -30,19 +30,37 @@ class Chat extends Component {
     }
   }
 
+  renderChat() {
+    let username;
+    if (this.props.user) {
+      username = this.props.user.name
+    }
+    if (this.props.chatHistory === null) {
+      return (
+        <div>
+          {"Pick one of your new bros to start chatting with!"}
+        </div>
+      )
+    } else {
+      return (
+        <ChatRoom history={this.props.chatHistory} user={username} />
+      )
+    }
+  }
+
   render() {
     console.log(this.props.friends)
-    console.log(this.props.chatHistory)
+    console.log('Chat history', this.props.chatHistory)
     return (
       <div className="row">
         <Navbar/>
-        <div className="col s4 card-1">
+        <div className="col s3 card-1 chatNameContainer">
           Your Bros
           <ul>
             {this.renderFriends()}
           </ul>
         </div>
-        <ChatRoom />
+        {this.renderChat()}
       </div>
     )
   }
@@ -51,7 +69,8 @@ class Chat extends Component {
 function mapStateToProps(state) {
   return {
     friends: state.friends,
-    chatHistory: state.chatHistory
+    chatHistory: state.chatHistory,
+    user: state.auth
   }
 }
 
