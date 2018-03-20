@@ -15,3 +15,4 @@ export const FETCH_LOCATIONS = 'fetch_all_locations';
 export const FILTER_BY_LOCATIONS = 'filter_by_locations';
 export const FETCH_FRIENDS = 'fetch_friends';
 export const FETCH_CHAT = 'fetch_chat';
+export const STORE_CHAT = 'store_chat';

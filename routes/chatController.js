@@ -16,10 +16,8 @@ chatController.get('/profile/friends', (req, res) => {
 chatController.get('/chat/:friendId', (req, res) => {
   const { friendId } = req.params,
   userId = req.user._id;
-  console.log('IDS', friendId, userId)
   Chat.find({ members: { $in: [ friendId, userId ] } })
     .exec((err, chat) => {
-      // console.log('CHAT CHECK', chat)
       if (err) {
         console.log('ERR', err)
         return res.status(200).send([])
@@ -31,13 +29,27 @@ chatController.get('/chat/:friendId', (req, res) => {
         });
         newChat.save();
         console.log('NEW CHAT', newChat)
-        return res.status(200).send(newChat.history);
+        return res.status(200).send(newChat);
       }
-      console.log('EXISTING CHAT FOUND', chat)
-      return res.status(200).send(chat.history);
+      return res.status(200).send(chat);
     })
 })
 
-// chatController.post()
+chatController.post('/chat/:friendId', (req, res) => {
+  const { friendId } = req.params,
+  { author, message } = req.body,
+  userId = req.user._id;
+
+  Chat.update(
+    { members: { $in: [ friendId, userId ] }},
+    { $push: { history: { author: author, message: message } }},
+    function (err, chat) {
+      if (err) {
+        console.log('ERR', err)
+      }
+      res.status(200)
+    }
+  );
+})
 
 module.exports = chatController;

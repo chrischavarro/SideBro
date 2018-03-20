@@ -6,23 +6,29 @@ import Navbar from './Navbar';
 import ChatRoom from './ChatRoom';
 
 class Chat extends Component {
-  // constructor(props) {
-  //   super(props);
-  //
-  //   this.state = {
-  //     activeChat: ''
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeFriendName: '',
+      activFriendId: ''
+    };
+  }
 
   componentDidMount() {
     this.props.fetchFriends()
+  }
+
+  handleChatSelect(friend) {
+    this.props.fetchChat(friend._id)
+    this.setState({ activeFriendName: friend.name, activeFriendId: friend._id })
   }
 
   renderFriends() {
     if (this.props.friends) {
       return this.props.friends.map(friend => {
         return (
-          <li key={friend._id} onClick={() => this.props.fetchChat(friend._id)}>
+          <li key={friend._id} onClick={() => this.handleChatSelect(friend)}>
           {friend.name}
           </li>
         )
@@ -42,15 +48,16 @@ class Chat extends Component {
         </div>
       )
     } else {
+      let { history, members } = this.props.chatHistory[0]
       return (
-        <ChatRoom history={this.props.chatHistory} user={username} />
+        <ChatRoom history={history} currentUser={username} friendName={this.state.activeFriendName} friendId={this.state.activeFriendId} />
       )
     }
   }
 
   render() {
-    console.log(this.props.friends)
-    console.log('Chat history', this.props.chatHistory)
+    // console.log(this.props.friends)
+    console.log('Chat history', this.props.chatHistory, this.state.activeFriend)
     return (
       <div className="row">
         <Navbar/>

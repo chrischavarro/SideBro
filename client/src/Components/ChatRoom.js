@@ -8,15 +8,15 @@ class ChatRoom extends Component {
     super(props);
 
     this.state = {
-      username: this.props.user,
+      username: this.props.currentUser,
       message: '',
-      messages: []
+      messages: this.props.history || []
     };
 
     this.socket = io('localhost:8001')
 
     this.sendMessage = e => {
-      this.setState({ username: this.props.user })
+      this.setState({ username: this.props.currentUser })
       e.preventDefault();
       this.socket.emit('SEND_MESSAGE', {
         author: this.state.username,
@@ -32,23 +32,19 @@ class ChatRoom extends Component {
     const addMessage = data => {
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
+      this.props.storeChat(this.props.friendId, data);
       console.log(this.state.messages)
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({ username: this.props.user })
-  //   console.log('USERNAME SET', this.state.username)
-  // }
-
   render() {
-    console.log(this.props.user, this.state.username)
+    // console.log(this.props.currentUser, this.state.username, this.props.members)
     return (
       <div className="row">
         <div className="col s8 chatContainer">
           <div className="card chatContent">
             <div className="card-body">
-              <div className="card-title chatTitle">Chatting with {this.props.user}</div>
+              <div className="card-title chatTitle">Chatting with {this.props.friendName}</div>
               <hr/>
               <div className="messages">
                 {this.state.messages.map(message => {
