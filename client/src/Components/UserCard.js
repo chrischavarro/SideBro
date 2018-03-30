@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { Collapse } from 'react-collapse'
+
+import UserBio from './UserCard/UserBio';
+import UserArtists from './UserCard/UserArtists';
 
 class UserCard extends Component {
   constructor(props) {
@@ -19,48 +23,36 @@ class UserCard extends Component {
     }
   }
 
-  renderArtists() {
-    if (this.props.artists) {
-      const { artists } = this.props;
-      return artists.map(artist => {
-        return (
-          <div key={artist._id} className="col s3" style={{ width: '20%' }}>
-            <img src={artist.image} className="cardArtistImage" alt={artist.name} />
-            <div style={{ textAlign: 'center', fontSize: '20px' }}>{artist.name}</div>
-          </div>
-        )
-      })
-    }
-  }
-
   render() {
+    const { optional, key, name, sendFriendRequest, summary, bio, artists} = this.props,
+          { clickedCard } = this.state
     return (
-      <div className={`col s5 userCard ${this.state.clickedCard} card-2 ${this.props.optional}`}
-        key={`${this.props.key}` }
+      <div className={`col s5 userCard ${clickedCard} card-2 ${optional}`}
+        key={`${key}` }
         onClick={() => this.toggleCardSize()}
       >
-        <div className={`userName ${this.state.clickedCard}`}>
+        <div className={`userName ${clickedCard}`}>
           <div>
-            <span>{this.props.name}</span>
+            <span>{name}</span>
             <i
-              onClick={() => this.props.sendFriendRequest('5a6c138722dcc97e0b1171f7')}
-              className={`material-icons addButton ${this.state.clickedCard}`}>
+              onClick={() => sendFriendRequest('5a6c138722dcc97e0b1171f7')}
+              className={`material-icons addButton ${clickedCard}`}>
               person_add
             </i>
           </div>
         </div>
-        <div className={`userBio ${this.state.clickedCard}`}>
-          {this.props.summary}
+        <div className={`userBio ${clickedCard}`}>
+          {summary}
         </div>
-        <div className={`cardExpandedContent ${this.state.clickedCard}`}>
-          <div className="cardExpandedBio">
-            {this.props.bio}
-          </div>
-          <div style={{ textAlign: 'center', marginBottom: '5px' }}>{`Favorite Artists`}</div>
-          <div className="cardArtists col s12">
-            {this.renderArtists()}
-          </div>
+        <Collapse isOpened={true }>
+        <div className={`cardExpandedContent ${clickedCard}`}>
+          <UserBio
+            clickedCard={clickedCard}
+            bio={bio}
+          />
+          <UserArtists artists={artists} />
         </div>
+        </Collapse>
       </div>
     )
   }

@@ -7,10 +7,10 @@ import AnimateHeight from 'react-animate-height';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import PropTypes from 'prop-types'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Navbar from './Navbar';
 import WizardForm from './Form/WizardForm';
-import Chatroom from './Chat/Chatroom';
 import UserCard from './UserCard';
 import MusicFilter from './Filters/MusicFilter';
 import TagFilter from './Filters/TagFilter';
@@ -56,8 +56,13 @@ class Dashboard extends Component {
     } else {
       return (
         <div>
-          {this.renderUsers()}
-          <Chatroom />
+          <ReactCSSTransitionGroup
+            transitionName="dashboardEnter" 
+            transitionEnterTimeout={700}
+            transitionLeaveTimeout={700}
+          >
+            {this.renderUsers()}
+          </ReactCSSTransitionGroup>
         </div>
       )
     }
@@ -66,18 +71,15 @@ class Dashboard extends Component {
 
   render() {
     let scrollbarStyles = {borderRadius: 5};
-    // console.log('USERS', this.props.users)
     return (
       <div className="row">
         <Navbar />
-
           <div className="col s10 offset-s1 card-1 filterDiv">
             Filter By
             <MusicFilter />
             <TagFilter />
             <LocationFilter />
           </div>
-
           <div className="col s10 offset-s1 card-1 dashboardUserContainer">
             <ScrollArea
               className="area"
@@ -104,4 +106,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect (mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, actions)(Dashboard);

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import io from 'socket.io-client';
 import * as actions from '../actions'
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import ChatRoom from './ChatRoom';
+import ChatPlaceholder from './Chat/ChatPlaceholder';
 
 class Chat extends Component {
   constructor(props) {
@@ -28,8 +28,12 @@ class Chat extends Component {
     if (this.props.friends) {
       return this.props.friends.map(friend => {
         return (
-          <li key={friend._id} onClick={() => this.handleChatSelect(friend)}>
-          {friend.name}
+          <li
+            key={friend._id}
+            onClick={() => this.handleChatSelect(friend)}
+            className="chatName"
+          >
+            {friend.name}
           </li>
         )
       })
@@ -43,9 +47,7 @@ class Chat extends Component {
     }
     if (this.props.chatHistory === null) {
       return (
-        <div>
-          {"Pick one of your new bros to start chatting with!"}
-        </div>
+        <ChatPlaceholder />
       )
     } else {
       let { history, members } = this.props.chatHistory[0]
@@ -56,14 +58,12 @@ class Chat extends Component {
   }
 
   render() {
-    // console.log(this.props.friends)
-    console.log('Chat history', this.props.chatHistory, this.state.activeFriend)
     return (
       <div className="row">
         <Navbar/>
         <div className="col s3 card-1 chatNameContainer">
-          Your Bros
-          <ul>
+          <div className="chatListHeader">Your Bros</div>
+          <ul className="chatNameList">
             {this.renderFriends()}
           </ul>
         </div>

@@ -16,7 +16,6 @@ class ChatRoom extends Component {
     this.socket = io('localhost:8001')
 
     this.sendMessage = e => {
-      this.setState({ username: this.props.currentUser })
       e.preventDefault();
       this.socket.emit('SEND_MESSAGE', {
         author: this.state.username,
@@ -30,15 +29,12 @@ class ChatRoom extends Component {
     });
 
     const addMessage = data => {
-      console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
       this.props.storeChat(this.props.friendId, data);
-      console.log(this.state.messages)
     };
   }
 
   render() {
-    // console.log(this.props.currentUser, this.state.username, this.props.members)
     return (
       <div className="row">
         <div className="col s8 chatContainer">
@@ -49,13 +45,15 @@ class ChatRoom extends Component {
               <div className="messages">
                 {this.state.messages.map(message => {
                   return (
-                    <div key={message.message}>{message.author}: {message.message}</div>
+                    <div key={message.message} className="chatMessage">
+                      <span className="chatAuthor">{message.author}</span>: {message.message}
+                    </div>
                   )
                 })}
               </div>
             </div>
             <div className="card-footer">
-              <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={e => this.setState({message: e.target.value})}/>
+              <input type="text" placeholder="Message" className="form-control chatInput" value={this.state.message} onChange={e => this.setState({message: e.target.value})}/>
               <br/>
               <button className="btn btn-primary form-control" onClick={this.sendMessage}>Send</button>
             </div>
@@ -66,10 +64,4 @@ class ChatRoom extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    // friends: state.friends
-  }
-}
-
-export default connect(mapStateToProps, actions)(ChatRoom);
+export default connect(null, actions)(ChatRoom);

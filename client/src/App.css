@@ -422,8 +422,8 @@ body {
   text-align: left;
   background-color: #009688;
   color: #fff;
-  /* font-size: 1em; */
-  font-size: 24px;
+  font-size: 1.6em;
+  /* font-size: 24px; */
   transition: all .2s;
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   border-radius: 3px;
@@ -474,8 +474,33 @@ body {
   display:none
 }
 
-.cardExpandedContent.hidden {
+.cardExpandedContent {
+  transition: all .5s;
+}
+
+/* .cardExpandedContent.hidden {
   display: none;
+  height: 0px!important;
+} */
+
+.cardExpandedContent.expanded {
+  /* height: 300px; */
+}
+
+.expandedHeader {
+  font-size: 1.6em!important;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 300;
+}
+
+.cardExpandedBioText {
+  font-size: 1.4em;
+}
+
+.cardArtistName {
+  font-size: 1em;
+  text-align: center;
 }
 
 .cardArtistImage {
@@ -510,11 +535,6 @@ body {
 }
 
 /* CHAT DESCRIPTION STYLING */
-.chatWindow {
-  margin-left: 2%!important;
-  margin-top: 28px;
-}
-
 .chatUserName {
   text-align: center;
   font-size: 26px;
@@ -561,9 +581,32 @@ body {
 
 .userCard.hidden:hover {
   background-color: #00675b;
+  transform: scale(1.05, 1.05)
 }
 
 /* DASHBOARD STYLING */
+.dashboardEnter-enter {
+  opacity: 0.01;
+  width: 0px;
+}
+
+.dashboardEnter-enter.dashboardEnter-active {
+  opacity: 1;
+  width: 100%;
+  transition: .3s;
+}
+
+.dashboardEnter-leave {
+  opacity: 1;
+  width: 100%;
+}
+
+.dashboardEnter-leave.dashboardEnter-active {
+  opacity: 0.01;
+  width: 0px;
+  transition: .3s;
+}
+
 .Select--multi {
   /* width: 30%!important; */
 }
@@ -600,17 +643,52 @@ nav {
 
 .chatNameContainer {
   margin: 2% 2% 0px 3%!important;
+  /* padding: 30px!important; */
+  padding: 20px 0px 20px 50px!important;
 }
 
-.chatContainer {
+.chatListHeader {
+  font-size: 2em;
+  text-align: left!important;
+  font-weight: 500;
+}
+
+.chatName {
+  font-size: 1.5em;
+}
+
+.chatName:hover {
+  cursor: pointer;
+}
+
+.chatContainer, .placeholderContainer {
   margin-top: 2%;
+}
+
+.placeholderContainer {
+  text-align: center;
+  font-size: 2em;
+  padding: 50px!important;
 }
 
 .chatContent {
   padding: 50px;
+  margin: 0px!important;
+}
+
+.chatInput {
+  font-size: 1.2em!important;
 }
 
 .chatTitle {
   text-align: center;
   padding-bottom: 20px;
+}
+
+.chatAuthor {
+  font-weight: 500;
+}
+
+.chatMessage {
+  font-size: 1.2em;
 }
